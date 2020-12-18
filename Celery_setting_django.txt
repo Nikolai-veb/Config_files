@@ -1,0 +1,54 @@
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'email'
+EMAIL_HOST_PASSWORD = "password"
+EMAIL_PORT = 587
+
+# Redis related settings
+REDIS_HOST = '0.0.0.0'
+REDIS_PORT = '6379'
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3000}
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+Install Celery
+Instal Redis
+
+pip install celery
+sudo docker run -d -p 6379:6379 redis  
+
+Создаем файл
+celery.py
+в нем прописываем
+
+"
+import os
+from celery import Celery
+
+os.environ.setdefault('DJANGO_SETTINGS_MODEL', 'name_your_name.settings')
+
+app = Celery('name_your_app')
+app.config_from_object('django.conf:settings', namespace='CELERY')
+app.autodiscover_tasks()
+"
+в файле __init__.py пропишите настройку
+
+from .celery import app as celery_app
+__all__ = ('celery_app',)
+
+
+Создайте файл tasks.py
+
+from .celery import app
+from .service import send
+
+@app.task
+def send_spam_email(user_email):
+    send(user_email)
+
+Запускаем селери
+celery -A Django_shop worker -i info
