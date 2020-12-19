@@ -19,6 +19,7 @@ Install Celery
 Instal Redis
 
 pip install celery
+pip install redis
 sudo docker run -d -p 6379:6379 redis  
 
 Создаем файл
@@ -50,5 +51,23 @@ from .service import send
 def send_spam_email(user_email):
     send(user_email)
 
+Создаем глобальную переменную
+
+- export DJANGO_SETTINGS_MODULE="my_app.settings"
+
 Запускаем селери
 celery -A Django_shop worker -i info
+
+Настройка  для переодических task
+celery.py
+
+app.conf.beat_schedule = {
+    'send-spam-every-2-minute':{
+        'task': 'main.tasks.send_much_letters',
+        'schedule': crontab(minute='*/5'),
+    },
+}
+
+Запускаем коммандой
+
+- celery -A my_app beat -l info 
