@@ -1,0 +1,11 @@
+sudo pacman -S postgresql
+su
+mkdir /var/run/postgresql
+chmod 770 /var/run/postgresql
+# su postgres
+pg_ctl -D /var/lib/postgres/data initdb
+pg_ctl -D /var/lib/postgres/data start
+
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+
