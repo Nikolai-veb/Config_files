@@ -1,0 +1,86 @@
+call plug#begin('~/.vim/plugged')
+
+"C#
+"Plug 'OmniSharp/omnisharp-vim'   
+"Plug 'prabirshrestha/asyncomplete.vim'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
+"Plug 'prabirshrestha/vim-lsp'
+"Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+
+Plug 'morhetz/gruvbox'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'jiangmiao/auto-pairs'
+Plug 'kien/ctrlp.vimi'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-surround'                         
+Plug 'mattn/emmet-vim'
+Plug 'mattn/webapi-vim'  
+
+
+
+"Плагины для Python
+Plug 'rkulla/pydiction'
+Plug 'Shougo/neocomplcache.vim'
+Plug 'vim-scripts/django.vim'
+Plug 'tweekmonster/django-plus.vim'
+
+
+"Прочие
+Plug 'fisadev/FixedTaskList.vim'
+call plug#end()
+  
+  
+  
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+  
+  
+"Перед сохранением вырезаем пробелы на концах (только в .py файлах)
+autocmd BufWritePre *.py normal m`:%s/\s\+$//e ``
+"В .py файлах включаем умные отступы после ключевых слов
+autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+  
+"mappings
+map <C-n> :NERDTreeToggle<CR>
+
+colorscheme gruvbox
+set number
+set expandtab
+set tabstop=4
+set termencoding=utf-8 "Кодировка терминала
+filetype on
+let python_highlight_all = 1
+set ft=html 
+" отключаем бэкапы и своп-файлы
+set nobackup     
+"no backup files                           
+set nowritebackup    
+"only in case you don't want a backup file while editing
+set noswapfile       
+"Включаем 256 цветов в терминале
+set t_Co=256
+"Настройки для Python
+"Вырубаем режим совместимости с VI:                               
+set nocompatible
+syntax on
+"Колоночка чтобы показывать плюсики для скрытия блока
+set foldcolumn=1
+"Включаем распознавание типов файлов и типо-специфичные плагины: 
+filetype on                                                       
+filetype plugin on
+
+"C#
+"let g:OmaniSharp_server_stdio = 0
+
+"inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
+
+
