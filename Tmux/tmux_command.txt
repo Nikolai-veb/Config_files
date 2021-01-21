@@ -1,0 +1,97 @@
+COMMANDS
+
+V # горизонтальное разделение окна вместо "
+H # вертикальное разделение окна вместо %
+W (y/n)' kill-window # закрыть окно
+
+
+ хелп по хоткеям (не забываем о префиксе в начале)
+ !  вынесть панель в окно
+ $  переименовать текущую сессию
+ () переключение сессий
+ ,  переименование окна
+ ;  перейти на последнюю активную панель
+ q  отобразить номера панелей (вводя номер переключимся на этот номер)
+ x  убить текущую панельй
+ 
+ 
+Хелп по статусу 
+#S - имя сессии
+#I - номер окна
+#P - номер панели
+#W - собственно сам заголовок, обычно имя программы
+%Y-%m-%d %H:%M - дата и время
+
+tmux new
+tmux new-session
+new
+
+Start a new session
+tmux new -s mysession
+new -s mysession
+
+Start a new session with the name mysession
+tmux kill-ses -t mysession
+tmux kill-session -t mysession
+
+kill/delete session mysession
+tmux kill-session -a
+
+kill/delete all sessions but the current
+tmux kill-session -a -t mysession
+
+tmux ls
+tmux list-sessions
+Ctrl + b s
+
+Show all sessions
+tmux a
+tmux at
+tmux attach
+tmux attach-session
+
+Attach to last session
+tmux a -t mysession
+tmux at -t mysession
+tmux attach -t mysession
+tmux attach-session -t mysession
+
+Attach to a session with the name mysession
+
+Ctrl + b $
+Rename session
+
+Ctrl + b d
+Detach from session
+
+Ctrl + b (
+Move to previous session
+
+Ctrl + b )
+Move to next session
+
+:attach -d
+Отключить других в сеансе (развернуть окно, отключив других клиентов)
+
+Ctrl + b n
+Next window
+
+Ctrl + b 0 ... 9
+Switch/select window by number
+
+Ctrl + b {
+Move the current pane left
+
+Ctrl + b }
+Move the current pane right
+
+Ctrl + b +
+Ctrl + b Ctrl +
+Ctrl + b +
+Ctrl + b Ctrl + 
+
+Resize current pane height(holding second key is optional)
+
+Ctrl + b o
+Перейти на следующую панель 
+

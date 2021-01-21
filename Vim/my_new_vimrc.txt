@@ -27,10 +27,13 @@ Plug 'rkulla/pydiction'
 Plug 'Shougo/neocomplcache.vim'
 Plug 'vim-scripts/django.vim'
 Plug 'tweekmonster/django-plus.vim'
+Plug 'ycm-core/YouCompleteMe'
 
 
 "Прочие
 Plug 'fisadev/FixedTaskList.vim'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'ervandew/supertab'
 call plug#end()
   
   
