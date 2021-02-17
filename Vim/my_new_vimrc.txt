@@ -51,6 +51,8 @@ autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,
   
 "mappings
 map <C-n> :NERDTreeToggle<CR>
+let g:user_emmet_expandabbr_key='<Tab>'
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 colorscheme gruvbox
 set number
