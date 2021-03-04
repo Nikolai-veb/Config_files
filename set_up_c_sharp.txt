@@ -1,0 +1,13 @@
+sudo pacman -S dotnet-sdk aspnet-runtime
+
+In order to have the needed environment variables and the dotnet root in PATH, create a/etc/profile.d/dotnet.sh file with the following contents:
+
+export DOTNET_ROOT=/usr/share/dotnet
+export MSBuildSDKsPath=$DOTNET_ROOT/sdk/$(${DOTNET_ROOT}/dotnet --version)/Sdks
+export PATH=${PATH}:${DOTNET_ROOT}
+
+
+Depending on what shell you use, append to the .bashrc or .zshrc configuration files the following:
+
+# Adds dotnet tools to the PATH variable
+export PATH="$PATH:/home/[[USER_NAME]]/.dotnet/tools"
